@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#eaf3ed">
+  <title>AgriSense — AI Agriculture & Environment Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="AgriSense home"><span class="brand-mark">A<span>g</span></span><span><b>AgriSense</b><small>AI Field Advisor</small></span></a>
+    <nav class="nav-list" aria-label="Main navigation">
+      <button class="nav-link active" data-view-link="scan"><span>⌕</span> Scan</button>
+      <button class="nav-link" data-view-link="advisory"><span>✳</span> Advisory</button>
+      <button class="nav-link" data-view-link="weather"><span>☼</span> Weather</button>
+      <button class="nav-link" data-view-link="report"><span>▤</span> Report</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <label class="language-box"><span>Language</span><select id="languageSelect"><option value="en">English</option><option value="hi">हिन्दी</option><option value="te">తెలుగు</option></select></label>
+      <div class="sidebar-note"><span class="online-dot"></span><span>Field tools, made simple</span></div>
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar">
+      <div><p class="eyebrow">SOCIAL IMPACT + VISION</p><h1>AI Agriculture and Environment<br class="desktop-break"> Intelligence App</h1></div>
+      <div class="top-actions"><span class="status-pill"><i></i><span id="connectionStatus">Offline-ready demo</span></span><button class="mobile-menu" id="menuBtn" aria-label="Open navigation">☰</button></div>
+    </header>
+
+    <section class="summary-grid" aria-label="Field summary">
+      <article class="summary-card"><span>Crop</span><strong id="summaryCrop">Tomato</strong></article>
+      <article class="summary-card"><span>Risk</span><strong id="summaryRisk">Pending scan</strong></article>
+      <article class="summary-card"><span>Confidence</span><strong id="summaryConfidence">—</strong></article>
+      <article class="summary-card"><span>Action</span><strong id="summaryAction">Upload leaf image</strong></article>
+    </section>
+
+    <section class="workspace" id="scanWorkspace">
+      <section class="panel scan-panel" id="scan" data-view-panel="scan">
+        <div class="panel-header"><div><p class="eyebrow">COMPUTER VISION WORKFLOW</p><h2>Image-Based Crop Diagnosis</h2></div><button class="icon-button" id="resetScan" title="Reset scan">↻</button></div>
+        <div class="form-row">
+          <label>Crop<select id="cropSelect"><option>Tomato</option><option>Paddy</option><option>Cotton</option><option>Chilli</option><option>Groundnut</option><option>Maize</option></select></label>
+          <label>Growth stage<select id="stageSelect"><option>Seedling</option><option selected>Vegetative</option><option>Flowering</option><option>Fruiting</option><option>Harvest</option></select></label>
+        </div>
+        <label class="upload-zone" id="uploadZone" for="imageInput">
+          <input type="file" id="imageInput" accept="image/*" hidden>
+          <span class="upload-icon">↑</span><strong>Drop or choose a leaf, pest, soil, or waste image</strong>
+          <small>Local browser analysis estimates color stress, spotting, dry area, and visible damage.</small>
+          <span class="upload-cta">＋ Upload crop image</span>
+        </label>
+        <div class="preview-area" id="previewArea">
+          <canvas id="analysisCanvas" width="720" height="390" aria-label="Uploaded image preview"></canvas>
+          <div class="metrics-grid">
+            <div><span>Green cover</span><b id="greenMetric">—</b><i class="metric-track"><i id="greenBar"></i></i></div>
+            <div><span>Yellow stress</span><b id="yellowMetric">—</b><i class="metric-track"><i id="yellowBar"></i></i></div>
+            <div><span>Dark spots</span><b id="spotMetric">—</b><i class="metric-track"><i id="spotBar"></i></i></div>
+            <div><span>Dry/brown area</span><b id="brownMetric">—</b><i class="metric-track"><i id="brownBar"></i></i></div>
+          </div>
+        </div>
+        <p class="fine-print">Demo note: image analysis runs locally in your browser. It is a visual estimate, not a laboratory diagnosis.</p>
+      </section>
+
+      <section class="panel result-panel" id="report" data-view-panel="scan report">
+        <div class="panel-header"><div><p class="eyebrow">RECOMMENDATION WITH REASONING</p><h2>Field Report</h2></div><span class="severity-badge" id="severityBadge">Waiting</span></div>
+        <div class="diagnosis-card"><span>LIKELY ISSUE</span><h3 id="diagnosisTitle">No scan yet</h3><p id="diagnosisText">Upload an image to generate a practical advisory with confidence and limitations.</p></div>
+        <div class="confidence-row"><span>Confidence estimate</span><b id="confidenceText">0%</b></div><div class="confidence-track"><i id="confidenceFill"></i></div>
+        <div class="tabs"><button class="tab active" data-tab="actions">Actions</button><button class="tab" data-tab="reasoning">Reasoning</button><button class="tab" data-tab="limits">Limits</button></div>
+        <div class="tab-body active" id="actionsTab"><p class="empty-hint">Your recommended next steps will appear here after a scan.</p></div>
+        <div class="tab-body" id="reasoningTab"></div><div class="tab-body" id="limitsTab"></div>
+      </section>
+    </section>
+
+    <section class="workspace lower-grid">
+      <section class="panel advisory-panel" id="advisory" data-view-panel="advisory">
+        <div class="panel-header"><div><p class="eyebrow">SIMPLE LANGUAGE ADVISORY</p><h2>Farmer Chat</h2></div><button class="icon-button" id="clearChat" title="Clear chat">↻</button></div>
+        <div class="chat-window" id="chatWindow"><div class="message bot">Namaste. Share a symptom, fertilizer question, irrigation concern, pest issue, or scan a crop image. I will keep the advice practical and mention when an expert is needed.</div></div>
+        <form class="chat-form" id="chatForm"><input id="chatInput" placeholder="Ask about pest, fertilizer, irrigation, soil, or pollution" autocomplete="off"><button type="submit">Send <span>➜</span></button></form>
+        <div class="quick-questions"><button data-question="How do I manage pests?">Pest care</button><button data-question="My crop leaves are yellow.">Yellow leaves</button><button data-question="How should I irrigate?">Irrigation</button></div>
+      </section>
+
+      <section class="panel weather-panel" id="weather" data-view-panel="weather">
+        <div class="panel-header"><div><p class="eyebrow">LOCATION-AWARE GUIDANCE</p><h2>Weather and Environment</h2></div><button class="icon-button" id="geoButton" title="Use my location">LOC</button></div>
+        <div class="form-row weather-fields">
+          <label class="wide-field">Location<input id="locationInput" value="Local farm" placeholder="Village / district"></label>
+          <label>Condition<select id="conditionSelect"><option value="humid">Humid after rain</option><option value="hot">Hot and dry</option><option value="cloudy">Cloudy</option><option value="rain">Heavy rain expected</option><option value="normal">Normal</option></select></label>
+          <label>Temperature °C<input type="number" id="tempInput" value="29" min="-10" max="60"></label>
+          <label>Humidity %<input type="number" id="humidityInput" value="68" min="0" max="100"></label>
+        </div>
+        <button class="primary-button full-button" id="updateWeather">Update field guidance <span>✦</span></button>
+        <div class="weather-advice" id="weatherAdvice"><article class="advice-item"><b>Field guidance</b><p>Update your field conditions to receive practical weather and environment guidance.</p></article></div>
+      </section>
+    </section>
+    <footer>AgriSense <span>•</span> A practical AI field-advisor demonstration. Always confirm crop treatment with a local agriculture expert.</footer>
+  </main>
+</div>
+<script src="app.js"></script>
+</body></html>
