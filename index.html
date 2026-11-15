@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#344536">
+  <title>AgriSense — Farm Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#" aria-label="AgriSense home">
+      <span class="brand-mark">✳</span><span><b>agri<span>sense</span></b><small data-i18n="brandSub">FIELD INTELLIGENCE</small></span>
+    </a>
+    <div class="farm-switcher"><div class="farm-avatar">F</div><div class="farm-switch-text"><strong id="sideFarmName">My Farm</strong><small data-i18n="workspace">Farm workspace</small></div><span class="chevron">⌄</span></div>
+    <div class="nav-label" data-i18n="workspaceNav">WORKSPACE</div>
+    <nav class="nav-list">
+      <button class="nav-link active" data-view="overview"><span class="nav-icon">▦</span><span data-i18n="navOverview">Overview</span></button>
+      <button class="nav-link" data-view="passport"><span class="nav-icon">▤</span><span data-i18n="navPassport">Farm Passport</span></button>
+      <button class="nav-link" data-view="scanner"><span class="nav-icon">⌕</span><span data-i18n="navScanner">Crop Scanner</span></button>
+      <button class="nav-link" data-view="timeline"><span class="nav-icon">⌁</span><span data-i18n="navTimeline">Health Timeline</span></button>
+      <button class="nav-link" data-view="reports"><span class="nav-icon">▧</span><span data-i18n="navReports">Reports</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-note"><span class="note-icon">✦</span><div><b data-i18n="fieldNoteTitle">A healthier field starts here.</b><p data-i18n="fieldNoteText">Track changes, learn from every scan and make informed decisions.</p></div></div>
+      <div class="sidebar-foot"><span class="online-dot"></span><span data-i18n="localDemo">Local demo workspace</span></div>
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar">
+      <button class="mobile-menu" id="menuToggle" aria-label="Open menu">☰</button>
+      <div class="breadcrumb"><span data-i18n="breadcrumbHome">Workspace</span><span class="crumb-slash">/</span><b id="pageCrumb" data-i18n="navOverview">Overview</b></div>
+      <div class="top-actions">
+        <span class="today-label" id="todayLabel"></span>
+        <label class="language-control"><span>文</span><select id="languageSelect" aria-label="Choose language"><option value="en">English</option><option value="hi">हिन्दी</option><option value="te">తెలుగు</option></select></label>
+        <div class="profile-dot" title="AgriSense">A</div>
+      </div>
+    </header>
+
+    <div class="content-wrap">
+      <section class="page active" id="page-overview">
+        <div class="page-heading">
+          <div><div class="eyebrow" data-i18n="overviewEyebrow">YOUR FIELD, AT A GLANCE</div><h1><span data-i18n="goodDay">A better day for your</span> <em data-i18n="farmWord">farm.</em></h1><p data-i18n="overviewIntro">A clear picture of your farm's activity, crop health and next steps.</p></div>
+          <button class="btn btn-primary" data-go="scanner"><span>＋</span><span data-i18n="newScan">New crop scan</span></button>
+        </div>
+        <div class="welcome-strip">
+          <div class="welcome-copy"><span class="sun-mark">☼</span><div><b id="welcomeFarm">Welcome to your farm</b><p data-i18n="welcomeText">Keep your farm details up to date to get more useful field insights.</p></div></div>
+          <button class="text-button" data-go="passport"><span data-i18n="completePassport">Complete farm passport</span> ↗</button>
+        </div>
+        <div class="stat-grid">
+          <article class="stat-card"><div class="stat-top"><span data-i18n="statFarm">Farm profile</span><span class="stat-icon olive">⌂</span></div><strong id="statFarm">Not set up</strong><small data-i18n="statFarmHint">Add your farm details</small></article>
+          <article class="stat-card"><div class="stat-top"><span data-i18n="statScans">Crop scans</span><span class="stat-icon terracotta">⌕</span></div><strong id="statScans">0</strong><small data-i18n="statScansHint">Scans saved to your timeline</small></article>
+          <article class="stat-card"><div class="stat-top"><span data-i18n="statLatest">Latest crop status</span><span class="stat-icon sage">✳</span></div><strong id="statHealth">—</strong><small id="statHealthHint" data-i18n="noScanYet">No scan recorded yet</small></article>
+          <article class="stat-card"><div class="stat-top"><span data-i18n="statReports">Reports ready</span><span class="stat-icon sand">▤</span></div><strong id="statReports">0</strong><small data-i18n="statReportsHint">Generate a PDF after a scan</small></article>
+        </div>
+        <div class="section-row"><div><div class="eyebrow" data-i18n="overviewSection">FIELD OVERVIEW</div><h2 data-i18n="recentActivity">Recent activity</h2></div><button class="text-button" data-go="timeline" data-i18n="viewTimeline">View timeline →</button></div>
+        <div class="overview-grid">
+          <article class="panel activity-panel"><div class="panel-title"><div><h3 data-i18n="healthSnapshot">Crop health snapshot</h3><p data-i18n="healthSnapshotSub">Your latest recorded field observations</p></div><span class="pill pill-neutral" id="snapshotBadge" data-i18n="awaitingData">Awaiting data</span></div><div class="snapshot-body" id="snapshotBody"><div class="empty-illustration">✿</div><b data-i18n="snapshotEmpty">Your crop story starts with a scan.</b><p data-i18n="snapshotEmptyText">Upload a crop image to create your first health record.</p><button class="btn btn-outline" data-go="scanner" data-i18n="startScan">Start a scan</button></div></article>
+          <article class="panel quick-panel"><div class="panel-title"><div><h3 data-i18n="quickActions">Quick actions</h3><p data-i18n="quickActionsSub">Useful tools for your next field visit</p></div></div><button class="quick-action" data-go="passport"><span class="quick-symbol">⌂</span><span><b data-i18n="editFarm">Set up farm passport</b><small data-i18n="editFarmSub">Save your farm and crop details</small></span><span class="arrow">↗</span></button><button class="quick-action" data-go="scanner"><span class="quick-symbol terra">⌕</span><span><b data-i18n="scanCrop">Scan a crop</b><small data-i18n="scanCropSub">Review visible leaf patterns</small></span><span class="arrow">↗</span></button><button class="quick-action" data-go="reports"><span class="quick-symbol sand">▤</span><span><b data-i18n="openReports">Open field reports</b><small data-i18n="openReportsSub">Print or save your records as PDF</small></span><span class="arrow">↗</span></button></article>
+        </div>
+        <div class="disclaimer-line"><span>ⓘ</span><span data-i18n="demoNotice">AgriSense is an educational prototype. Image results are visual estimates, not a confirmed crop diagnosis.</span></div>
+      </section>
+
+      <section class="page" id="page-passport">
+        <div class="page-heading"><div><div class="eyebrow" data-i18n="passportEyebrow">KNOW YOUR LAND</div><h1 data-i18n="passportTitle">Your Farm <em>Passport.</em></h1><p data-i18n="passportIntro">Create a simple profile so your field records have useful context.</p></div><span class="page-tag">01 / FARM PROFILE</span></div>
+        <div class="passport-layout">
+          <article class="panel form-panel"><div class="panel-title"><div><h3 data-i18n="farmDetails">Farm details</h3><p data-i18n="farmDetailsSub">You can update these details whenever your farm changes.</p></div><span class="panel-emoji">🌱</span></div>
+            <form id="passportForm" class="form-grid">
+              <label class="field full"><span data-i18n="farmName">Farm name</span><input id="farmName" type="text" placeholder="e.g. Green Valley Farm" data-i18n-placeholder="farmNamePlaceholder" required></label>
+              <label class="field"><span data-i18n="farmerName">Farmer / owner name</span><input id="farmerName" type="text" placeholder="Your name" data-i18n-placeholder="farmerPlaceholder"></label>
+              <label class="field"><span data-i18n="location">Location</span><input id="farmLocation" type="text" placeholder="Village, district, state" data-i18n-placeholder="locationPlaceholder"></label>
+              <label class="field"><span data-i18n="landArea">Land area (acres)</span><input id="farmArea" type="number" min="0" step="0.01" placeholder="e.g. 2.5"></label>
+              <label class="field"><span data-i18n="soilType">Soil type</span><select id="soilType"><option value="">Select soil type</option><option>Clay</option><option>Loamy</option><option>Sandy</option><option>Silty</option><option>Black soil</option><option>Red soil</option><option>Laterite</option></select></label>
+              <label class="field"><span data-i18n="mainCrop">Main crop</span><select id="mainCrop"><option>Tomato</option><option>Paddy</option><option>Cotton</option><option>Chilli</option><option>Groundnut</option><option>Maize</option><option>Other</option></select></label>
+              <label class="field"><span data-i18n="plantingDate">Planting date</span><input id="plantingDate" type="date"></label>
+              <div class="form-footer full"><span class="save-hint" data-i18n="passportPrivacy">Your profile is saved in this browser on this device.</span><button class="btn btn-primary" type="submit" data-i18n="savePassport">Save farm passport</button></div>
+            </form>
+          </article>
+          <aside class="passport-preview"><div class="passport-cover"><div class="passport-stamp">✳</div><span data-i18n="digitalFarmId">DIGITAL FARM ID</span><h2 id="previewFarmName">My Farm</h2><p id="previewLocation">Add your farm location</p><div class="passport-landscape">⌂</div></div><div class="passport-meta"><div><small data-i18n="owner">OWNER</small><b id="previewOwner">—</b></div><div><small data-i18n="area">LAND AREA</small><b id="previewArea">—</b></div><div><small data-i18n="crop">MAIN CROP</small><b id="previewCrop">Tomato</b></div><div><small data-i18n="soil">SOIL</small><b id="previewSoil">—</b></div></div><div class="passport-foot"><span class="online-dot"></span><span data-i18n="passportLocal">Your local farm identity</span></div></aside>
+        </div>
+      </section>
+
+      <section class="page" id="page-scanner">
+        <div class="page-heading"><div><div class="eyebrow" data-i18n="scannerEyebrow">VISUAL FIELD CHECK</div><h1 data-i18n="scannerTitle">Crop <em>Scanner.</em></h1><p data-i18n="scannerIntro">Record a leaf observation and keep it with your farm history.</p></div><span class="page-tag">02 / FIELD SCAN</span></div>
+        <div class="scanner-grid">
+          <article class="panel scan-panel"><div class="panel-title"><div><h3 data-i18n="newObservation">New observation</h3><p data-i18n="newObservationSub">Choose the crop and add a clear photo.</p></div><span class="panel-emoji">⌕</span></div>
+            <div class="form-grid compact">
+              <label class="field"><span data-i18n="cropType">Crop type</span><select id="scanCrop"><option>Tomato</option><option>Paddy</option><option>Cotton</option><option>Chilli</option><option>Groundnut</option><option>Maize</option></select></label>
+              <label class="field"><span data-i18n="growthStage">Growth stage</span><select id="growthStage"><option value="Seedling" data-i18n="seedling">Seedling</option><option value="Vegetative" selected data-i18n="vegetative">Vegetative</option><option value="Flowering" data-i18n="flowering">Flowering</option><option value="Fruiting" data-i18n="fruiting">Fruiting</option><option value="Harvest" data-i18n="harvest">Harvest</option></select></label>
+            </div>
+            <label class="upload-zone" id="uploadZone"><input type="file" id="imageInput" accept="image/*" hidden><span class="upload-icon">↥</span><b data-i18n="uploadTitle">Drop a crop image here</b><small data-i18n="uploadSub">or browse from your device · JPG, PNG, WEBP</small><span class="btn btn-outline btn-small" data-i18n="chooseImage">Choose image</span></label>
+            <div class="image-preview hidden" id="imagePreviewWrap"><img id="imagePreview" alt="Selected crop"><div><b id="imageFileName"></b><small data-i18n="imageReady">Image ready for visual review</small></div><button type="button" class="icon-button" id="removeImage" aria-label="Remove image">×</button></div>
+            <div class="scan-foot"><p data-i18n="scanDisclaimer">This demo checks broad colour patterns only. It cannot identify a disease with certainty.</p><button class="btn btn-primary" id="analyseBtn" disabled data-i18n="analyseImage">Analyse image</button></div>
+          </article>
+          <article class="panel result-panel"><div class="panel-title"><div><h3 data-i18n="observationResult">Observation result</h3><p data-i18n="resultSub">A visual estimate for your field notes</p></div><span class="pill pill-neutral" id="resultPill" data-i18n="waiting">Waiting</span></div><div id="resultEmpty" class="result-empty"><div class="result-leaf">❧</div><b data-i18n="resultEmptyTitle">Your scan result will appear here.</b><p data-i18n="resultEmptyText">Choose an image to begin. Save the result to add it to your crop timeline.</p></div><div id="resultContent" class="hidden"><div class="result-score"><div><small data-i18n="visualHealthEstimate">VISUAL HEALTH ESTIMATE</small><strong id="healthScore">—</strong></div><div class="score-ring" id="scoreRing"><span id="scoreRingText">—</span></div></div><div class="meter-list"><div class="meter-row"><span data-i18n="greenCoverage">Green coverage</span><div class="meter"><i id="greenMeter"></i></div><b id="greenValue">0%</b></div><div class="meter-row"><span data-i18n="yellowAreas">Yellow areas</span><div class="meter"><i id="yellowMeter"></i></div><b id="yellowValue">0%</b></div><div class="meter-row"><span data-i18n="darkSpots">Dark spots</span><div class="meter"><i id="darkMeter"></i></div><b id="darkValue">0%</b></div></div><div class="finding-box"><small data-i18n="fieldNote">FIELD NOTE</small><p id="findingText"></p></div><button class="btn btn-primary full-btn" id="saveScanBtn" data-i18n="saveToTimeline">Save to health timeline</button></div></article>
+        </div>
+      </section>
+
+      <section class="page" id="page-timeline">
+        <div class="page-heading"><div><div class="eyebrow" data-i18n="timelineEyebrow">SEE THE CHANGE OVER TIME</div><h1>Crop Health <em data-i18n="timelineWord">Timeline.</em></h1><p data-i18n="timelineIntro">Every saved scan becomes part of your farm's visual history.</p></div><button class="btn btn-primary" data-go="scanner">＋ <span data-i18n="newScan">New crop scan</span></button></div>
+        <article class="panel timeline-panel"><div class="panel-title"><div><h3 data-i18n="healthHistory">Health history</h3><p data-i18n="healthHistorySub">Compare visual estimates from your saved observations.</p></div><span class="pill pill-neutral" id="timelineCount">0 records</span></div><div id="timelineChart" class="chart-wrap"><div class="chart-empty" data-i18n="timelineEmpty">Your crop health chart will appear after your first saved scan.</div></div><div id="timelineList" class="timeline-list"></div></article>
+        <div class="disclaimer-line"><span>ⓘ</span><span data-i18n="timelineDisclaimer">A change in this visual score is not proof of disease improvement or decline. Compare photos taken in similar lighting.</span></div>
+      </section>
+
+      <section class="page" id="page-reports">
+        <div class="page-heading"><div><div class="eyebrow" data-i18n="reportsEyebrow">YOUR FIELD RECORDS</div><h1>Field <em data-i18n="reportsWord">Reports.</em></h1><p data-i18n="reportsIntro">Create a print-ready PDF record for your farm notebook or project review.</p></div><button class="btn btn-primary" id="exportLatestBtn">↓ <span data-i18n="exportLatest">Export latest PDF</span></button></div>
+        <article class="panel reports-panel"><div class="panel-title"><div><h3 data-i18n="savedReports">Saved observations</h3><p data-i18n="savedReportsSub">Select a record to preview or export it.</p></div><span class="pill pill-neutral" id="reportCount">0</span></div><div id="reportsList" class="reports-list"><div class="chart-empty" data-i18n="reportsEmpty">No saved observations yet. Complete a crop scan first.</div></div></article>
+        <div class="pdf-tip"><span class="pdf-icon">PDF</span><div><b data-i18n="pdfTipTitle">How PDF export works</b><p data-i18n="pdfTipText">Choose “Download PDF” to open your browser's print dialog. Select “Save as PDF” as the destination.</p></div></div>
+      </section>
+    </div>
+    <footer class="main-footer"><span>✳ AgriSense</span><span data-i18n="footerText">A student-built agriculture intelligence prototype · Earth & Terracotta edition</span></footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
